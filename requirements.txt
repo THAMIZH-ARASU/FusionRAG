@@ -1,0 +1,11 @@
+langchain
+sentence-transformers
+faiss-cpu
+PyPDF2
+python-docx
+openai
+numpy
+pandas
+tiktoken
+rich
+pydantic
