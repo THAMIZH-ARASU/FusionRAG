@@ -39,9 +39,46 @@ A sophisticated Retrieval-Augmented Generation (RAG) system that combines multip
 
 The FusionRAG system implements a sophisticated multi-stage pipeline:
 
-<p align=center>
-    <img src="images\FusionRAG_architecture.png">
-</p>
+```mermaid
+flowchart TD
+    %% Input and Query Transformation
+    A[User Query Input] --> B[Query Transformation]
+    B --> B1[HyDE / HyPE Embedding]
+    B1 --> C[Hybrid Retrieval Engine]
+
+    %% Retrieval Nodes
+    C --> C1[BM25 Keyword-Based]
+    C --> C2[Vector DB e.g. Milvus]
+    C --> C3[Knowledge Graph LangChain]
+
+    %% Reranking and Filtering
+    C1 --> D[Reranking]
+    C2 --> D
+    C3 --> D
+    D --> E[Multi-faceted Filtering]
+
+    %% Context Enrichment
+    E --> F[Contextual Chunk Enrichment]
+    F --> F1[Semantic Chunking]
+    F --> F2[Contextual Headers]
+    F --> F3[Contextual Compression]
+    F --> F4[Relevant Segment Extraction]
+
+    %% Iterative Retrieval Logic
+    F4 --> G[Adaptive Retrieval Loop?]
+    G -->|Insufficient Context| C
+    G -->|Sufficient Context| H[Final Context Window]
+
+    %% LLM and Output
+    H --> I[LLM Generation]
+    I --> J[Output Answer]
+
+    %% Evaluation Layer
+    J --> K[Evaluation & Feedback]
+    K --> K1[DeepEval Metrics]
+    K --> K2[Explainable Retrieval Logs]
+    K -->|Use feedback| C
+```
 
 ### Core Components
 
