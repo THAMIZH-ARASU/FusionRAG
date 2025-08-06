@@ -453,7 +453,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 - **Issues**: [GitHub Issues](https://github.com/THAMIZH-ARASU/FusionRAG/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/THAMIZH-ARASU/FusionRAG/discussions)
+- **Pull Requests**: [Github Pull Requests](https://github.com/THAMIZH-ARASU/FusionRAG/pulls)
+- **Documentation**: [Github Wiki](https://github.com/THAMIZH-ARASU/FusionRAG/wiki)
 
 ---
 
