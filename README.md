@@ -35,6 +35,13 @@ A sophisticated Retrieval-Augmented Generation (RAG) system that combines multip
 - **Explainable Retrieval Logs**: Transparent retrieval process tracking
 - **Retrieval Quality Assessment**: Precision, Recall, F1-score metrics
 
+### 🌐 **Web Interface**
+- **Modern Flask UI**: Beautiful, responsive web interface
+- **FastAPI Backend**: High-performance REST API
+- **Document Upload**: Support for PDF, DOCX, TXT, MD files
+- **Real-time Comparison**: Compare different RAG methods side-by-side
+- **Metrics Visualization**: View processing times, context lengths, and other metrics
+
 ## 🏗️ Architecture
 
 The FusionRAG system implements a sophisticated multi-stage pipeline:
@@ -121,27 +128,174 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
+pip install -r fast_api_backend/requirements.txt
+pip install -r flask_ui/requirements.txt
 ```
 
-### Dependencies
+### Environment Configuration
 
-The system requires the following key dependencies:
+1. **Create Environment File**
+   ```bash
+   # The startup script will create this automatically, or you can create it manually
+   cp fast_api_backend/.env.example fast_api_backend/.env
+   ```
 
-```txt
-langchain              # Knowledge graph and chain management
-sentence-transformers  # Hugging Face sentence embeddings
-faiss-cpu             # Vector similarity search
-PyPDF2                # PDF document processing
-python-docx           # Word document processing
-openai                # OpenAI API integration
-numpy                 # Numerical computations
-pandas                # Data manipulation
-tiktoken              # Token counting
-rich                  # Rich console output
-pydantic              # Data validation
+2. **Configure API Keys**
+   Edit `fast_api_backend/.env` and add your API keys:
+   ```env
+   GROQ_API_KEY=your_GROQ_API_KEY_here
+   GOOGLE_API_KEY=your_google_api_key_here
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+
+## 🚀 Running the Application
+
+### Option 1: Using the Startup Script (Recommended)
+
+```bash
+# Start both FastAPI backend and Flask UI
+python start_app.py
 ```
 
-## 🚀 Quick Start
+This will:
+- Check dependencies
+- Create .env file if needed
+- Start FastAPI backend on http://localhost:8000
+- Start Flask UI on http://localhost:5000
+
+### Option 2: Manual Startup
+
+#### Start FastAPI Backend
+```bash
+cd fast_api_backend
+python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+#### Start Flask UI
+```bash
+cd flask_ui
+python app.py
+```
+
+## 🌐 Web Interface
+
+Once the application is running, you can access:
+
+- **Flask UI**: http://localhost:5000
+- **FastAPI Docs**: http://localhost:8000/docs
+- **FastAPI ReDoc**: http://localhost:8000/redoc
+
+### Features Available in the Web Interface
+
+1. **Document Upload**
+   - Drag and drop or click to upload documents
+   - Supports PDF, DOCX, TXT, MD formats
+   - Automatic document indexing
+
+2. **Query Interface**
+   - Natural language querying
+   - Multiple retrieval method selection
+   - LLM provider selection (OpenAI, Groq, Google)
+   - Adjustable parameters (max tokens, temperature)
+
+3. **Method Comparison**
+   - Side-by-side comparison of different RAG methods
+   - Performance metrics visualization
+   - Processing time analysis
+
+4. **System Status**
+   - Real-time system health monitoring
+   - Document count and indexing status
+   - Available retrieval methods
+
+## 🔧 API Endpoints
+
+### FastAPI Backend Endpoints
+
+- `GET /` - Root endpoint
+- `GET /health` - System health check
+- `POST /upload` - Upload documents
+- `POST /index` - Index uploaded documents
+- `POST /query` - Query documents using RAG
+- `POST /compare` - Compare different RAG methods
+- `GET /documents` - List uploaded documents
+- `DELETE /documents/{id}` - Delete a document
+
+### Example API Usage
+
+```python
+import requests
+
+# Upload a document
+with open('document.pdf', 'rb') as f:
+    files = {'file': f}
+    response = requests.post('http://localhost:8000/upload', files=files)
+
+# Query documents
+payload = {
+    'query': 'What is artificial intelligence?',
+    'retrieval_methods': ['hybrid'],
+    'llm_provider': 'openai',
+    'max_tokens': 1000,
+    'temperature': 0.7
+}
+response = requests.post('http://localhost:8000/query', json=payload)
+result = response.json()
+```
+
+## 📚 Supported Document Types
+
+The system supports multiple document formats:
+
+- **PDF Documents** (.pdf)
+- **Word Documents** (.docx)
+- **Text Files** (.txt)
+- **Markdown Files** (.md)
+- **Extensible**: Easy to add new document types
+
+## 🔍 Retrieval Engines
+
+### BM25 Engine
+Traditional keyword-based retrieval using TF-IDF scoring.
+
+```python
+from retrieval_engines.bm25_engine import BM25Engine
+
+bm25_engine = BM25Engine()
+results = bm25_engine.retrieve(query, k=10)
+```
+
+### Vector Database Engine
+Semantic similarity search using FAISS and sentence embeddings.
+
+```python
+from retrieval_engines.vectordb_engine import VectorDBEngine
+
+vector_engine = VectorDBEngine(embedding_engine)
+results = vector_engine.retrieve(query, k=10)
+```
+
+### Knowledge Graph Engine
+Structured information retrieval using LangChain.
+
+```python
+from retrieval_engines.knowledge_graph_engine import KnowledgeGraphEngine
+
+kg_engine = KnowledgeGraphEngine()
+results = kg_engine.retrieve(query, k=10)
+```
+
+### Hybrid Engine
+Combines multiple retrieval methods using Reciprocal Rank Fusion.
+
+```python
+from retrieval_engines.hybrid_engine import HybridRetrievalEngine
+
+hybrid_engine = HybridRetrievalEngine([bm25_engine, vector_engine, kg_engine])
+results = hybrid_engine.retrieve(query, k=10)
+```
+
+## 🎯 Usage Examples
 
 ### Basic Usage
 
@@ -227,254 +381,32 @@ custom_config = {
 pipeline = RAGPipeline(custom_config)
 ```
 
-## 📚 Supported Document Types
+## 🧪 Testing
 
-The system supports multiple document formats:
+```bash
+# Run tests
+python -m pytest tests/
 
-- **PDF Documents** (.pdf)
-- **Word Documents** (.docx)
-- **Text Files** (.txt)
-- **Extensible**: Easy to add new document types
-
-## 🔍 Retrieval Engines
-
-### BM25 Engine
-Traditional keyword-based retrieval using TF-IDF scoring.
-
-```python
-from retrieval_engines.bm25_engine import BM25Engine
-
-bm25_engine = BM25Engine()
-results = bm25_engine.retrieve(query, k=10)
+# Run with coverage
+python -m pytest tests/ --cov=fusion_rag --cov-report=html
 ```
 
-### Vector Database Engine
-Semantic similarity search using FAISS and sentence embeddings.
+## 📊 Performance Metrics
 
-```python
-from retrieval_engines.vectordb_engine import VectorDBEngine
-from embedding_engines.huggingface_embedding import HuggingFaceEmbedding
+The system provides comprehensive performance metrics:
 
-embedding_engine = HuggingFaceEmbedding('all-MiniLM-L6-v2')
-vector_engine = VectorDBEngine(embedding_engine)
-results = vector_engine.retrieve(query, k=10)
-```
-
-### Knowledge Graph Engine
-Structured information retrieval using LangChain.
-
-```python
-from retrieval_engines.knowledge_graph_engine import KnowledgeGraphEngine
-
-kg_engine = KnowledgeGraphEngine()
-results = kg_engine.retrieve(query, k=10)
-```
-
-### Hybrid Engine
-Combines multiple retrieval engines using Reciprocal Rank Fusion.
-
-```python
-from retrieval_engines.hybrid_engine import HybridRetrievalEngine
-
-hybrid_engine = HybridRetrievalEngine(
-    engines={'bm25': bm25_engine, 'vector_db': vector_engine},
-    weights={'bm25': 0.3, 'vector_db': 0.7}
-)
-```
-
-## 🧠 Embedding Engines
-
-### HuggingFace Embeddings
-Standard sentence transformers for semantic embeddings.
-
-```python
-from embedding_engines.huggingface_embedding import HuggingFaceEmbedding
-
-embedding_engine = HuggingFaceEmbedding('all-MiniLM-L6-v2')
-embeddings = embedding_engine.embed_query("Your query here")
-```
-
-### HyDE Embeddings
-Hypothetical Document Embedding for improved retrieval.
-
-```python
-from embedding_engines.hyde_embedding import HyDEEmbedding
-
-hyde_engine = HyDEEmbedding(base_embedding_engine, llm_client)
-embeddings = hyde_engine.embed_query("Your query here")
-```
-
-## 🔄 Adaptive Retrieval Loop
-
-The system implements intelligent adaptive retrieval:
-
-```python
-from core_utils.adaptive_retrieval_loop import AdaptiveRetrievalLoop
-
-adaptive_loop = AdaptiveRetrievalLoop(
-    retrieval_engine=hybrid_engine,
-    context_manager=context_manager,
-    max_iterations=3
-)
-
-context, metadata = adaptive_loop.retrieve_with_feedback(query)
-```
-
-### Context Sufficiency Evaluation
-- Automatic assessment of retrieved context quality
-- Query term coverage analysis
-- Minimum context length validation
-- Iterative retrieval with parameter adjustment
-
-## 📊 Evaluation and Metrics
-
-### Retrieval Evaluation
-
-```python
-from core_utils.rag_evaluator import RAGEvaluator
-
-evaluator = RAGEvaluator()
-metrics = evaluator.evaluate_retrieval(
-    retrieved_docs=retrieved_documents,
-    relevant_docs=ground_truth_documents
-)
-
-print(f"Precision: {metrics['precision']:.3f}")
-print(f"Recall: {metrics['recall']:.3f}")
-print(f"F1-Score: {metrics['f1']:.3f}")
-```
-
-### Context Relevance Evaluation
-
-```python
-relevance_score = evaluator.evaluate_context_relevance(context, query)
-print(f"Context Relevance: {relevance_score:.3f}")
-```
-
-## 🔧 Advanced Features
-
-### Context Management
-
-```python
-from core_utils.context_manager import ContextManager
-
-context_manager = ContextManager(max_context_length=4000)
-enriched_context = context_manager.enrich_context(documents, query)
-```
-
-### Text Chunking
-
-```python
-from core_utils.text_chunker import TextChunker
-
-chunker = TextChunker(
-    chunk_size=1000,
-    overlap=200,
-    strategy='recursive'  # Options: 'simple', 'recursive', 'semantic'
-)
-chunks = chunker.chunk_documents(documents)
-```
-
-### Query Transformation
-
-```python
-from core_utils.query_transformer import QueryTransformer
-
-transformer = QueryTransformer()
-transformed_query = transformer.transform_query(original_query)
-```
-
-## 🚀 Performance Optimization
-
-### For Small Context LLMs
-
-```python
-def optimize_for_small_context_llm(pipeline, max_context_tokens=1000):
-    """Optimize pipeline for LLMs with small context windows"""
-    
-    # Adjust context manager
-    pipeline.context_manager.max_context_length = max_context_tokens
-    
-    # Use more aggressive chunking
-    pipeline.text_chunker.chunk_size = min(pipeline.text_chunker.chunk_size, 300)
-    pipeline.text_chunker.overlap = min(pipeline.text_chunker.overlap, 50)
-    
-    # Reduce retrieval count
-    pipeline.config['max_adaptive_iterations'] = 1
-    
-    return pipeline
-```
-
-### Index Persistence
-
-```python
-# Save index for later use
-pipeline.save_index('saved_index.pkl')
-
-# Load existing index
-pipeline.load_index('saved_index.pkl')
-```
-
-## 📝 Example Use Cases
-
-### 1. Document Q&A System
-
-```python
-# Load technical documentation
-pipeline.load_documents(['docs/api_reference.pdf', 'docs/user_guide.docx'])
-pipeline.index_documents()
-
-# Answer questions about the documentation
-query = "How do I authenticate API requests?"
-result = pipeline.query(query)
-```
-
-### 2. Research Assistant
-
-```python
-# Load research papers
-pipeline.load_documents(['papers/paper1.pdf', 'papers/paper2.pdf'])
-pipeline.index_documents()
-
-# Get insights from research
-query = "What are the latest developments in transformer architecture?"
-result = pipeline.query(query, use_adaptive_retrieval=True)
-```
-
-### 3. Knowledge Base Search
-
-```python
-# Load knowledge base articles
-pipeline.load_documents(['kb/article1.txt', 'kb/article2.txt'])
-pipeline.index_documents()
-
-# Search knowledge base
-query = "How to troubleshoot network connectivity issues?"
-result = pipeline.query(query)
-```
+- **Retrieval Quality**: Precision, Recall, F1-score
+- **Processing Time**: Query processing and response generation time
+- **Context Quality**: Context length and relevance scores
+- **System Performance**: Memory usage, CPU utilization
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/FusionRAG.git
-cd FusionRAG
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate
-
-# Install development dependencies
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
-
-# Run tests
-python -m pytest tests/
-```
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
@@ -486,6 +418,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Hugging Face**: For sentence transformers and embeddings
 - **FAISS**: For efficient vector similarity search
 - **OpenAI**: For LLM integration capabilities
+- **FastAPI**: For high-performance API framework
+- **Flask**: For web framework
+- **Bootstrap**: For UI components
 
 ## 📞 Support
 
