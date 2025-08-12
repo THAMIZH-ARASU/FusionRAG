@@ -16,7 +16,7 @@ if env_path.exists():
     load_dotenv(env_path)
 
 # Configuration
-API_BASE_URL = "https://fusionrag.onrender.com/"
+API_BASE_URL = "https://fusionrag.onrender.com"
 API_KEY = os.getenv("WEBHOOK_API_KEY", "your_webhook_api_key")
 
 # Test data based on hackathon requirements
