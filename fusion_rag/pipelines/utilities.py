@@ -1,7 +1,7 @@
 import time
 from typing import Any, Dict, List
 
-from pipelines.rag_pipeline import RAGPipeline
+from fusion_rag.pipelines.rag_pipeline import RAGPipeline
 
 
 class RAGPipelineUtils:

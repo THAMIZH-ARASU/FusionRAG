@@ -1,8 +1,8 @@
 from typing import Dict, List, Tuple
 
-from retrieval_engines.base_engine import RetrievalEngine
-from structures.document import Document
-from structures.query_context import QueryContext
+from fusion_rag.retrieval_engines.base_engine import RetrievalEngine
+from fusion_rag.structures.document import Document
+from fusion_rag.structures.query_context import QueryContext
 
 
 class HybridRetrievalEngine:

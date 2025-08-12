@@ -1,8 +1,8 @@
 from pathlib import Path
-from loaders.base_loader import DocumentLoader
-from loaders.docx_loader import DOCXLoader
-from loaders.pdf_loader import PDFLoader
-from loaders.txt_loader import TXTLoader
+from fusion_rag.loaders.base_loader import DocumentLoader
+from fusion_rag.loaders.docx_loader import DOCXLoader
+from fusion_rag.loaders.pdf_loader import PDFLoader
+from fusion_rag.loaders.txt_loader import TXTLoader
 
 
 class DocumentLoaderFactory:

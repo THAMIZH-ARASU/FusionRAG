@@ -3,7 +3,7 @@ from typing import List
 
 import numpy as np
 
-from structures.document import Document
+from fusion_rag.structures.document import Document
 
 
 class EmbeddingEngine(ABC):

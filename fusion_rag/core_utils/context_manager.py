@@ -2,8 +2,8 @@ import re
 from typing import List, Tuple
 import tiktoken
 
-from structures.document import Document
-from structures.query_context import QueryContext
+from fusion_rag.structures.document import Document
+from fusion_rag.structures.query_context import QueryContext
 
 
 class ContextManager:

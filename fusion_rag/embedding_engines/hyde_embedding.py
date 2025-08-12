@@ -1,8 +1,8 @@
 from typing import List
 
 import numpy as np
-from embedding_engines.base_engine import EmbeddingEngine
-from structures.document import Document
+from fusion_rag.embedding_engines.base_engine import EmbeddingEngine
+from fusion_rag.structures.document import Document
 
 
 class HyDEEmbedding(EmbeddingEngine):

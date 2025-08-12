@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from structures.document import Document
+from fusion_rag.structures.document import Document
 
 
 class DocumentLoader(ABC):

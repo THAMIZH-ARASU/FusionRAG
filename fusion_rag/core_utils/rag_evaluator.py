@@ -1,6 +1,6 @@
 from typing import Dict, List
 
-from structures.document import Document
+from fusion_rag.structures.document import Document
 
 
 class RAGEvaluator:

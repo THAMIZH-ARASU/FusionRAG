@@ -1,11 +1,11 @@
 from typing import List, Tuple
-from embedding_engines.base_engine import EmbeddingEngine
-from retrieval_engines.base_engine import RetrievalEngine
-from structures.document import Document
+from fusion_rag.embedding_engines.base_engine import EmbeddingEngine
+from fusion_rag.retrieval_engines.base_engine import RetrievalEngine
+from fusion_rag.structures.document import Document
 
 import faiss
 
-from structures.query_context import QueryContext
+from fusion_rag.structures.query_context import QueryContext
 
 class VectorDBEngine(RetrievalEngine):
     """Vector database retrieval engine using FAISS"""

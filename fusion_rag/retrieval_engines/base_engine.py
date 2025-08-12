@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List, Tuple
 
-from structures.document import Document
-from structures.query_context import QueryContext
+from fusion_rag.structures.document import Document
+from fusion_rag.structures.query_context import QueryContext
 
 
 class RetrievalEngine(ABC):

@@ -3,9 +3,9 @@ from typing import List, Tuple
 
 import numpy as np
 
-from retrieval_engines.base_engine import RetrievalEngine
-from structures.document import Document
-from structures.query_context import QueryContext
+from fusion_rag.retrieval_engines.base_engine import RetrievalEngine
+from fusion_rag.structures.document import Document
+from fusion_rag.structures.query_context import QueryContext
 
 
 class BM25Engine(RetrievalEngine):

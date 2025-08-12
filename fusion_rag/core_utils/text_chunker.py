@@ -2,7 +2,7 @@ import re
 from typing import List
 import tiktoken
 
-from structures.document import Document
+from fusion_rag.structures.document import Document
 
 
 class TextChunker:

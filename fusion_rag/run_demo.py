@@ -1,6 +1,6 @@
-from core_utils.llm_integration import LLMIntegration
-from pipelines.rag_factory import RAGPipelineFactory
-from pipelines.rag_pipeline import RAGPipeline
+from fusion_rag.core_utils.llm_integration import LLMIntegration
+from fusion_rag.pipelines.rag_factory import RAGPipelineFactory
+from fusion_rag.pipelines.rag_pipeline import RAGPipeline
 
 
 def example_usage():

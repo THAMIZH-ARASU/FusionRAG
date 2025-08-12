@@ -5,21 +5,21 @@ import pickle
 import time
 from typing import Any, Dict, List
 
-from core_utils.adaptive_retrieval_loop import AdaptiveRetrievalLoop
-from core_utils.context_manager import ContextManager
-from core_utils.query_transformer import QueryTransformer
-from core_utils.text_chunker import TextChunker
-from embedding_engines.base_engine import EmbeddingEngine
-from embedding_engines.huggingface_embedding import HuggingFaceEmbedding
-from embedding_engines.hyde_embedding import HyDEEmbedding
-from loaders.document_loader_factory import DocumentLoaderFactory
-from retrieval_engines.base_engine import RetrievalEngine
-from retrieval_engines.bm25_engine import BM25Engine
-from retrieval_engines.hybrid_engine import HybridRetrievalEngine
-from retrieval_engines.knowledge_graph_engine import KnowledgeGraphEngine
-from retrieval_engines.vectordb_engine import VectorDBEngine
-from structures.query_context import QueryContext
-from utils.logger import logger
+from fusion_rag.core_utils.adaptive_retrieval_loop import AdaptiveRetrievalLoop
+from fusion_rag.core_utils.context_manager import ContextManager
+from fusion_rag.core_utils.query_transformer import QueryTransformer
+from fusion_rag.core_utils.text_chunker import TextChunker
+from fusion_rag.embedding_engines.base_engine import EmbeddingEngine
+from fusion_rag.embedding_engines.huggingface_embedding import HuggingFaceEmbedding
+from fusion_rag.embedding_engines.hyde_embedding import HyDEEmbedding
+from fusion_rag.loaders.document_loader_factory import DocumentLoaderFactory
+from fusion_rag.retrieval_engines.base_engine import RetrievalEngine
+from fusion_rag.retrieval_engines.bm25_engine import BM25Engine
+from fusion_rag.retrieval_engines.hybrid_engine import HybridRetrievalEngine
+from fusion_rag.retrieval_engines.knowledge_graph_engine import KnowledgeGraphEngine
+from fusion_rag.retrieval_engines.vectordb_engine import VectorDBEngine
+from fusion_rag.structures.query_context import QueryContext
+from fusion_rag.utils.logger import logger
 import faiss
 
 class RAGPipeline:

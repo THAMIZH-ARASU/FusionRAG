@@ -1,8 +1,8 @@
 from typing import Any, Dict, Tuple
 
-from core_utils.context_manager import ContextManager
-from retrieval_engines.hybrid_engine import HybridRetrievalEngine
-from structures.query_context import QueryContext
+from fusion_rag.core_utils.context_manager import ContextManager
+from fusion_rag.retrieval_engines.hybrid_engine import HybridRetrievalEngine
+from fusion_rag.structures.query_context import QueryContext
 
 
 class AdaptiveRetrievalLoop:

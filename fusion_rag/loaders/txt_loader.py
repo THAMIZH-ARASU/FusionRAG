@@ -1,8 +1,8 @@
 from pathlib import Path
 from typing import List
-from loaders.base_loader import DocumentLoader
-from structures.document import Document
-from utils.logger import logger
+from fusion_rag.loaders.base_loader import DocumentLoader
+from fusion_rag.structures.document import Document
+from fusion_rag.utils.logger import logger
 
 class TXTLoader(DocumentLoader):
     """Loader for TXT files"""

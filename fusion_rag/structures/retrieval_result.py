@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Any, Dict, List
 
-from structures.document import Document
+from fusion_rag.structures.document import Document
 
 @dataclass
 class RetrievalResult:
