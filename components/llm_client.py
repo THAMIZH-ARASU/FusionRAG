@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import aiohttp
 import asyncio
 from tenacity import retry, stop_after_attempt, wait_exponential
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 from core.exceptions import LLMException
 from core.interfaces import Document, QueryContext
 from config.settings import LLMConfig

@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from core.interfaces import BaseReranker, RetrievalResult
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 
 class ReciprocalRankFusionReranker(BaseReranker):
     """Reranks results using Reciprocal Rank Fusion."""

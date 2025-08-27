@@ -1,7 +1,7 @@
 import networkx as nx
 from typing import List, Dict, Any, Tuple
 from core.interfaces import BaseRetriever, RetrievalResult, QueryContext, Document, RetrievalType
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 
 class KnowledgeGraphRetriever(BaseRetriever):
     """Knowledge graph-based retrieval using NetworkX."""

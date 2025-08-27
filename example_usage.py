@@ -317,7 +317,7 @@ async def demonstrate_basic_usage():
     config = RAGConfig(
         llm=LLMConfig(
             provider="groq",
-            model="mixtral-8x7b-32768",
+            model="deepseek-r1-distill-llama-70b",
             api_key=os.getenv("GROQ_API_KEY", "your-api-key-here"),
             temperature=0.1
         ),
@@ -393,7 +393,7 @@ async def demonstrate_advanced_features():
     config = RAGConfig(
         llm=LLMConfig(
             provider="groq",
-            model="mixtral-8x7b-32768",
+            model="deepseek-r1-distill-llama-70b",
             api_key=os.getenv("GROQ_API_KEY", "your-api-key-here"),
             temperature=0.1
         ),

@@ -2,7 +2,7 @@ from rank_bm25 import BM25Okapi
 from typing import List, Dict, Any
 import numpy as np
 from core.interfaces import BaseRetriever, RetrievalResult, QueryContext, Document, RetrievalType
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 
 class BM25Retriever(BaseRetriever):
     """BM25-based keyword retrieval."""

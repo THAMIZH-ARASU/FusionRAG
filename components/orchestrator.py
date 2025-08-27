@@ -3,7 +3,7 @@ from typing import List, Dict, Any, Optional
 from concurrent.futures import ThreadPoolExecutor
 import time
 from core.interfaces import BaseRetriever, RetrievalResult, QueryContext, RetrievalType
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 from core.metrics import RetrievalMetrics
 
 class HybridRetrievalOrchestrator:

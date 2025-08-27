@@ -9,7 +9,7 @@ except ImportError:
     DEEPEVAL_AVAILABLE = False
 
 from core.interfaces import Document, QueryContext, RAGResponse
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 from core.metrics import RAGMetrics
 
 @dataclass

@@ -1,7 +1,7 @@
 from pymilvus import Collection, connections
 from typing import List, Optional
 from core.interfaces import BaseRetriever, RetrievalResult, QueryContext, Document, RetrievalType
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 from core.exceptions import RetrievalException
 from config.settings import VectorDBConfig
 

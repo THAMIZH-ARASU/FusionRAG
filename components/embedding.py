@@ -2,8 +2,8 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 from typing import List
 import asyncio
-from core.interfaces import BaseEmbedding
-from core.logging import RAGLogger
+from core.interfaces import BaseEmbedding, QueryContext
+from core.logger import RAGLogger
 from core.exceptions import EmbeddingException
 
 class SentenceTransformerEmbedding(BaseEmbedding):

@@ -1,7 +1,7 @@
 from typing import Dict, List, Any, Optional
 import json
 from datetime import datetime
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 from core.interfaces import QueryContext, RetrievalResult, Document
 
 class ExplainableRetrievalLogger:

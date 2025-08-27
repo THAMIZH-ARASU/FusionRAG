@@ -157,7 +157,7 @@ async def custom_rag_example():
     config = RAGConfig(
         llm=LLMConfig(
             provider="groq",
-            model="mixtral-8x7b-32768",
+            model="deepseek-r1-distill-llama-70b",
             api_key="your-api-key-here",
             temperature=0.1
         )
@@ -228,7 +228,7 @@ config = RAGConfig(
     # LLM Configuration
     llm=LLMConfig(
         provider="groq",
-        model="mixtral-8x7b-32768",
+        model="deepseek-r1-distill-llama-70b",
         api_key="your-api-key",
         temperature=0.1,
         max_tokens=2048

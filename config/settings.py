@@ -7,7 +7,7 @@ from dataclasses_json import dataclass_json
 @dataclass
 class LLMConfig:
     provider: str = "groq"
-    model: str = "mixtral-8x7b-32768"
+    model: str = "deepseek-r1-distill-llama-70b"
     api_key: str = field(default_factory=lambda: os.getenv("GROQ_API_KEY"))
     temperature: float = 0.1
     max_tokens: int = 2048

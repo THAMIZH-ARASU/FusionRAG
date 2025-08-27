@@ -1,7 +1,7 @@
 import re
 from typing import List, Dict, Any
 from core.interfaces import RetrievalResult, Document
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 
 class ContextualChunkEnricher:
     """Enriches chunks with contextual information for better LLM processing."""

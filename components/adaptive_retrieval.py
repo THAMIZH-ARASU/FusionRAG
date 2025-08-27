@@ -1,7 +1,7 @@
 from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass
 from core.interfaces import QueryContext, RetrievalResult, Document
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 from components.orchestrator import HybridRetrievalOrchestrator
 from components.filter import MultiFactedFilter
 from components.context_enricher import ContextualChunkEnricher

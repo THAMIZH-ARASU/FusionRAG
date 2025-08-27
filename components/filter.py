@@ -2,7 +2,7 @@ from typing import List, Set, Dict, Any
 import re
 from datetime import datetime, timedelta
 from core.interfaces import RetrievalResult, Document
-from core.logging import RAGLogger
+from core.logger import RAGLogger
 
 class MultiFactedFilter:
     """Advanced filtering system for retrieval results."""
